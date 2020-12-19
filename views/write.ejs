@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+   
+    <form action="/board/write" method="post">
+        제목 : <input type="text" name="title"><br>
+        내용 : <textarea name="contents"></textarea><br>
+        글쓴이 : <input type="text" name="author"><br>
+        
+        <input type="submit" value="확인">
+    </form>
+
+
+    
+  </body>
+</html>
+
+  <br>
+  <br>
+
+  <html ng-app="Genie">
+
+<head>
+
+<title>GenieGo in HelloAnt$</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+
+    <script src="controller/controller.js"></script>
+
+</head>
+
+<body ng-controller="helloants">
+
+
+<form  action='/upload' method="post" enctype="multipart/form-data" >
+
+<font size="5">이미지 : </font>&nbsp;&nbsp; <input type='file' name='upload' />
+
+        <br>
+
+        <br>
+        <input type='submit' />
+        <br>
+
+        <br>
+
+</form>
+
+    
+
+    <div ng-repeat="image in imageList">
+
+        <img ng-src="{{image.filePath}}" width="50" height="50" />
+
+        <h2>{{image.name}}</h2>
+
+    </div>
+
+</body>
+
+</html>
