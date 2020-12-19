@@ -1,9 +1,8 @@
-# Nodejs-board-sample
-nodejs, express, mongodb(mongoose), ejs
+# Kick the bucket!
 
-cd project_name && npm start
+software 2020-2-classproject
 
-before install project
-1. install mongdb
-2. create 'mydb' database
-3. start mongod
+team
+20152706 한민수
+20161539 박규성
+20152624 오준섭
