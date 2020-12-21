@@ -110,7 +110,7 @@ db.images.insert({"name":name,"filePath":filePath},function(err,doc){
 
   });
 
-    res.redirect("/main"); // http://localhost:3000/ 으로 이동!
+    res.redirect("/write"); // http://localhost:3000/ 으로 이동!
 
 });
 
@@ -168,7 +168,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static("public"));
 app.use('/', index);
 app.use('/users', users);
 

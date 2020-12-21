@@ -1,36 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Genie">
   <head>
     <title><%=board.author%>님의 버킷리스트</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="controller/controller.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
+    <link href="signin.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="carousel.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .parent {
+        display: table-cell;
+        vertical-align: middle;
+        overflow: auto;
+      }
+
+    </style>
+    
+    <link href="form-validation.css" rel="stylesheet">
   </head>
-  <body>
-    <h1><%=board.author%>님의 버킷리스트</h1>
-    <p>Welcome to <%= title %></p>
-      <h1>제목 : <%=board.title%> </h1>
-      <h3>작성자 : <%=board.author%> </h3>
-      <h3>내용 : <%=board.contents%> </h3>
+  <body ng-controller="helloants" class="bg-light">
 
-      <div ng-repeat="image in imageList">
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+        <a class="navbar-brand" href="/main" style="font-family: cursive;">KicktheBucket!</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/mypage">마이페이지</a>
+            </li>
+          </ul>
+         
+        </div>
+        
+        <div>
+          <a class="nav-link" href="/write">작성하기</a>
+        </div>
+        <div>
+          <a class="nav-link" href='/'>로그아웃</a>
+        </div>
+        
+      </nav>
+    </header>
 
-        <img ng-src="{{image.filePath}}" width="50" height="50" />
-
-        <h2>{{image.name}}</h2>
+    <br>
+    <br>
+    <div class="container" style="border: solid rgba(0, 0, 0, 0.30) 1px; border-radius: 10px;">
+      <div class="mb-0 mt-3 text-lg-left">
+        <h3><%=board.author%> 님의 버킷리스트</h3>
       </div>
-      
     <hr>
-    <% if (board.comments !== null) {
-        var comment = board.comments;
-          for(var i = 0; i < board.comments.length; i++) {%>
-    <h4>작성자 : <%=comment[i].author%></h4>
-    <h4>내용 : <%=comment[i].contents%></h4>
-    <hr>
-    <%}}%>
-    <form action="/comment/write" method="post">
-      <input type="text" name="id" value="<%=board._id%>" hidden>
-      댓글 : <textarea name="contents"></textarea><br>
-      글쓴이 : <input type="text" name="author"><br>
-      <input type="submit" value="확인">
-    </form>
+    
+<div class="mb-"3">
+  <label for="title" style="font-weight: bold;">제목 : </label>
+  <label><%=board.title%></label>&ensp;&ensp;
+  <label for="author" style="font-weight: bold;">작성자 : </label>
+    <label><%=board.author%></label><br> 
+  <hr>
+  <label for="content" style="font-weight: bold;">내용 : </label>
+  <div class="container parent" style="height: 250px;"><%=board.contents%></div><br>
+</div>
+
+<hr>
+
+
+<form action="/comment/write" method="post">
+  <div class="mb-3">
+    작성자 : <label for="username"></label>
+    <input type="text" name="author" class="form-control" placeholder="Username" required>
+    </div>
+  <div class="mb-3">
+  <input type="text" name="id" value="<%=board._id%>" hidden>
+  댓글 :<label for="coment"></label>
+  <textarea name="contents" class="form-control" placeholder="Coment" required></textarea>
+  </div>
+  <button class="btn btn-primary btn-sm" type="submit">확인</button>
+  
+</form>
+<hr>
+<% if (board.comments !== null) {
+  var comment = board.comments;
+    for(var i = 0; i < board.comments.length; i++) {%>
+<label for="author" style="font-weight: bold;"><%=comment[i].author%></label><br>
+<label for="comment">내용 : <%=comment[i].contents%></label><br>
+<hr>
+<%}}%>
+</div>
   </body>
 </html>
